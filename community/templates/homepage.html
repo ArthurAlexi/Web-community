@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container mt-3">
+        <h1>Community!</h1>
+        <h3 style="color: gray">just a community to interact about anything</h3>
+        <hr/>
+        {% for post in posts %}
+            <div class="row border m-2 p-2" style="box-shadow: 5px 3px 3px black;">
+                <div class="col-4">
+                     <div class="image pe-3"> <img src="{{ url_for('static', filename='photos_profile/{}'.format(post.author.profile_picture)) }}" alt="profile picture" class="rounded" width="200"> </div>
+                    <strong>{{ post.author.name }}</strong>
+                    <div class="row  d-flex">
+                        <div class="col" style="text-align: center">
+                            <h5>Courses</h5>
+                            {% for curso in post.author.courses.split(';') %}
+                                <button type="button" class="btn btn-dark mt-1" disabled>{{ curso }}</button>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <a href="{{ url_for('showPost', post_id=post.id) }}" style="text-decoration: none"><h4>{{ post.title }}</h4></a>
+                    <hr/>
+                    <p> {{ post.body }} </p>
+                </div>
+            </div>
+            <br>
+            <br>
+        {% endfor%}
+    </div>
+
+{% endblock %}

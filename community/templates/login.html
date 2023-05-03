@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="row mt-6">
+        <div class="mb-3 col-5">
+            <h3>Login</h3>
+            <hr>
+            <form method="post" action="" class="border p-4">
+                {{ formLogin.csrf_token }}
+                <div class="mb-3">
+                    {{ formLogin.email.label(class="form-label mt-1 mb-1", for="email") }}
+                    {% if formLogin.email.errors %}
+                        {{ formLogin.email(class="form-control mb-2  is-invalid", id="email", placeholder="name@example.com") }}
+                        <div class="invalid-feedback">
+                        {% for error in formLogin.email.errors %}
+                                {{ error }}
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ formLogin.email(class="form-control mb-2", id="email", placeholder="name@example.com") }}
+                    {% endif %}
+
+                    <!--
+                    <label for="email" class="form-label mt-1 mb-1">Email address</label>
+                    <input type="email" class="form-control mb-2" id="email" placeholder="name@example.com">
+                    -->
+                </div>
+                <div class="mb-3">
+                    {{ formLogin.password.label(class="form-label mt-1 mb-1", for="email") }}
+                    {% if formLogin.password.errors %}
+                        {{ formLogin.password(class="form-control mb-2 is-invalid", id="password", placeholder="Inform your password") }}
+                        <div class="invalid-feedback">
+                        {% for error in formLogin.password.errors %}
+                                {{ error }}
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ formLogin.password(class="form-control mb-2", id="password", placeholder="Inform your password") }}
+                    {% endif %}
+                </div>
+                <div class="form-check mb-3">
+                    {{ formLogin.remember.label(class="form-check-label", for="flexCheckDefault") }}
+                    {{ formLogin.remember(class="form-check-input",type="checkbox", id="flexCheckDefault") }}
+                </div>
+                <div class="mb-3">
+                    {{ formLogin.btnSubmitLogin(class="btn btn-secondary offset-5", type="submit") }}
+                </div>
+            </form>
+        </div>
+
+        <div class=" col-5 offset-1">
+            <h3>Create an account</h3>
+            <hr>
+            <form method="post" action="" class="border p-4" >
+                {{ formCreateAccount.csrf_token }}
+                <div class="form-group mb-3">
+                    {{ formCreateAccount.name.label(class="form-label mt-1 mb-1", for="name") }}
+                    {% if formCreateAccount.name.errors %}
+                        {{ formCreateAccount.name(class="form-control mb-2 is-invalid", id="name", placeholder="Inform your user name") }}
+                        <div class="invalid-feedback">
+                        {% for error in formCreateAccount.name.errors %}
+                                {{ error }}
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ formCreateAccount.name(class="form-control mb-2", id="name", placeholder="Inform your user name") }}
+                    {% endif %}
+                    <!--
+                    <label for="name" class="form-label mt-1 mb-1">Your name</label>
+                    <input type="text" class="form-control mb-2" id="name" placeholder="Inform your name">
+                    -->
+                </div>
+                <div class="mb-3">
+                    {{ formCreateAccount.email.label(for="createEmail", class="form-label mt-1 mb-1") }}
+                    {% if formCreateAccount.email.errors %}
+                        {{ formCreateAccount.email(type="email", class="form-control mb-2 is-invalid", id="createEmail", placeholder="name@example.com") }}
+                        <div class="invalid-feedback">
+                        {% for error in formCreateAccount.email.errors %}
+                                {{ error }}
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ formCreateAccount.email(type="email", class="form-control mb-2", id="createEmail", placeholder="name@example.com") }}
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    {{ formCreateAccount.password.label(class="form-label mt-1 mb-1") }}
+                    {% if formCreateAccount.password.errors %}
+                        {{ formCreateAccount.password(type="password", class="form-control mb-2 is-invalid", placeholder="Inform your password") }}
+                        <div class="invalid-feedback">
+                        {% for error in formCreateAccount.password.errors %}
+                                {{ error }}
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ formCreateAccount.password(type="password", class="form-control mb-2", placeholder="Inform your password") }}
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    {{ formCreateAccount.confirmPassword.label(for="confirmPassword", class="form-label mt-1 mb-1") }}
+                    {% if formCreateAccount.confirmPassword.errors %}
+                        {{ formCreateAccount.confirmPassword(type="password", class="form-control mb-2 is-invalid", id="createPassword", placeholder="Inform your password") }}
+                        <div class="invalid-feedback">
+                        {% for error in formCreateAccount.confirmPassword.errors %}
+                                {{ error }}
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ formCreateAccount.confirmPassword(type="password", class="form-control mb-2", id="confirmPassword", placeholder="Inform your password") }}
+                    {% endif %}
+
+                </div>
+                <div class="mb-3">
+                    {{formCreateAccount.btnSubmitCreate(class="btn btn-secondary offset-5")}}
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

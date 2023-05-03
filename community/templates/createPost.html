@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block body %}
+   <div class="container">
+      <div class="row">
+         <div class="offset-2 col-8 mt-4">
+            <h3> Form to create a new post</h3>
+            <form method="post" action="" class="border p-4">
+                {{ form.csrf_token }}
+
+                <div class="form-group mb-3">
+                    {{ form.title.label(class="form-label mt-1 mb-1", for="title") }}
+                    {% if form.title.errors %}
+                        {{ form.title(class="form-control mb-2  is-invalid", id="title", placeholder="") }}
+                        <div class="invalid-feedback">
+                        {% for error in form.title.errors %}
+                                {{ error }}
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.title(class="form-control mb-2", id="title") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group mb-3">
+                    {{ form.body.label(class="form-label mt-1 mb-1", for="body") }}
+                    {% if form.body.errors %}
+                        {{ form.body(class="form-control mb-2  is-invalid", id="body") }}
+                        <div class="invalid-feedback">
+                        {% for error in form.body.errors %}
+                                {{ error }}
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.body(class="form-control mb-2", id="body") }}
+                    {% endif %}
+                </div>
+
+                 <div class="mb-3">
+                    {{ form.btnSubmit(class="btn btn-secondary offset-5", type="submit") }}
+                </div>
+            </form>
+         </div>
+      </div>
+   </div>
+{% endblock %}
+
+
