@@ -45,7 +45,7 @@ def login():
             flash(f'unsuccessful login to email: {formLogin.email.data}', category='alert-danger')
     if formCreateAccount.validate_on_submit() and 'btnSubmitCreate' in request.form:
         # criar conta
-        senha_cry = bcrypt.generate_password_hash(formCreateAccount.password.data)
+        senha_cry = bcrypt.generate_password_hash(formCreateAccount.password.data).decode("utf-8")
         user = User(name=formCreateAccount.name.data, email=formCreateAccount.email.data, password=senha_cry)
         # adicionar a sessao
         dataBase.session.add(user)
