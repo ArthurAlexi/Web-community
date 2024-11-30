@@ -1,5 +1,3 @@
-
-
 ### Description
 
 This is a website to function as a blog:
